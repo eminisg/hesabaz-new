@@ -1,0 +1,23 @@
+<main style="display: flex">
+  <app-sidebar style="width: 20%">
+    <nav #navList>
+      <ng-container *ngFor="let sidebarItem of categoriesList$ | async; let i = index">
+        <button
+          class="sidebar__list-item"
+          [ngClass]="{'active-link': activeCategoryIndex === i}"
+          (click)="activateRoute(i, sidebarItem.name)"
+          routerLink="/"
+        >
+          <img class="list-icon" [alt]="sidebarItem?.name" [src]="sidebarItem?.logoPath"/>
+          {{ sidebarItem?.displayName }}
+        </button>
+      </ng-container>
+    </nav>
+  </app-sidebar>
+  <section style="width: 80%;background-color: #eef1f4;overflow: auto;max-height: 100vh">
+    <div style="max-width: 1440px;margin: 0 auto;padding:15px">
+      <router-outlet></router-outlet>
+    </div>
+  </section>
+</main>
+

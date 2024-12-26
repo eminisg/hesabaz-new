@@ -1,0 +1,37 @@
+<section *ngIf="billingInfo$ | async as billingInfo">
+  <div class="content-wrapper">
+    <h2>{{ billingInfo?.billingMerchant.displayName }}</h2>
+    <ul>
+      <li *ngFor="let i of billingInfo.parameters">
+        <h3>
+          {{ i.title }}
+        </h3>
+        <b>
+          {{ i.displayValue }}
+        </b>
+      </li>
+    </ul>
+    <label>
+      Amount
+      <div class="amount-wrapper">
+        <input type="text" [(ngModel)]="amount.wholePart" (input)="updateAmount()" placeholder="0"/>
+        <input type="text" [(ngModel)]="amount.decimalPart" (input)="updateAmount()" placeholder=".00"/>
+        <p>AZN</p>
+      </div>
+    </label>
+    <label *ngIf="billingInfo.paymentMethod">
+      Card type
+      <select [(ngModel)]="singleBillingData.paymentType" >
+        <option [value]="paymentType.value" *ngFor="let paymentType of billingInfo.paymentMethod.card">{{paymentType.displayName}}</option>
+      </select>
+    </label>
+    <div>
+      <button type="button">
+        Back
+      </button>
+      <button (click)="submit()" type="submit">
+        SUBMIT
+      </button>
+    </div>
+  </div>
+</section>

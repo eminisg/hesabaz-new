@@ -1,0 +1,52 @@
+<section *ngIf="parameters$ | async as parameters">
+  <form class="content-wrapper" [formGroup]="form" (ngSubmit)="submit()">
+    <ng-container *ngFor="let fieldData of parameters.parameter">
+      <ng-container *ngIf="fieldData?.selectOption">
+        <ng-container
+          *ngIf="fieldData?.selectOption.length === 1 || fieldData?.selectOption.length > 3; else tabContent">
+          <label>
+            {{ fieldData.displayName }}
+            <select [disabled]="fieldData?.selectOption.length === 1" [formControlName]="fieldData.name">
+              <option *ngFor="let item of fieldData?.selectOption" [value]="item.value">{{ item.name }}</option>
+            </select>
+          </label>
+        </ng-container>
+        <ng-template #tabContent>
+          <div class="buttons-wrapper">
+            <button *ngFor="let item of fieldData?.selectOption; let i = index"
+                    class="button secondary-button"
+                    [ngClass]="{'primary-button': activeIndex === i}"
+                    (click)="activeTabEvent(fieldData.name,item.value, i)">
+              {{ item.name }}
+            </button>
+          </div>
+
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="!fieldData?.selectOption && checkBackendFullMistake(fieldData.condition)">
+        <label>{{ fieldData.displayName }}
+          <input  [placeholder]="fieldData.hint || ''" [type]="fieldData.type" [formControlName]="fieldData.name">
+        </label>
+        <div
+          *ngIf="form.controls[fieldData.name].invalid && form.controls[fieldData.name].touched"
+        >
+          <ng-container *ngFor="let i of errorTypes">
+            <ng-container *ngIf="form.controls[fieldData.name].hasError(i) && isFirstError(i, fieldData.name)">
+              <small class="field__error-message">{{ "ERROR." + i }}</small>
+            </ng-container>
+          </ng-container>
+        </div>
+
+      </ng-container>
+    </ng-container>
+    <div class="buttons-wrapper m-t-1">
+      <button (click)="window.history.back()" type="button" class="button secondary-button">
+        Back
+      </button>
+      <button type="submit" class="button primary-button">
+        SUBMIT
+      </button>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,158 @@
+/* Reset and base styles  */
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Links */
+
+a, a:link, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* Common */
+
+aside, nav, footer, header, section, main {
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+ul, ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+address {
+  font-style: normal;
+}
+
+/* Form */
+
+input, textarea, button, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background-color: transparent;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+input:focus, input:active,
+button:focus, button:active {
+  outline: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+legend {
+  display: block;
+}
+
+.list-icon {
+  width: 2em;
+  height: 2em;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red !important;
+}
+
+.field__error-message {
+  color: red;
+}
+
+.content-wrapper {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+select, input {
+  height: 56px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 0.5rem;
+}
+
+input[type='tel'], input[type='text'] {
+  cursor: text;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+label + label {
+  margin-top: 1rem;
+}
+
+button {
+  cursor: pointer;
+}
+
+.button {
+  height: 56px;
+  padding: 0 1rem;
+  border-radius: 4px;
+  line-height: 46px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+
+}
+
+.secondary-button {
+  background-color: #eef1f4;
+  border: 1px solid #eef1f4;
+  color: #282828;
+}
+
+.primary-button {
+  background-color: #0b6ac4;
+  border: 1px solid #0b6ac4;
+  color: #fff;
+}
+
+.buttons-wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.m-t-1 {
+  margin-top: 1rem;
+}
