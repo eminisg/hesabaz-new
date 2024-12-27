@@ -5,7 +5,6 @@ import {BehaviorSubject} from 'rxjs';
   providedIn: 'root'
 })
 export class UnregPayStoreService {
-
   selectedMerchantCategory$ = new BehaviorSubject('mobile');
   merchantParameters$ = new BehaviorSubject({});
   singleBillingData$ = new BehaviorSubject({});

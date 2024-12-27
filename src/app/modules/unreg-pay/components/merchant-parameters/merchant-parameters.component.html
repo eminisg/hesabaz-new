@@ -1,7 +1,9 @@
 <section *ngIf="parameters$ | async as parameters">
   <form class="content-wrapper" [formGroup]="form" (ngSubmit)="submit()">
+    <h2 class="h2-title">{{parameters?.billingMerchant?.displayName}}</h2>
+    <p class="mb-1">{{'NOTE.add_info'}}</p>
     <ng-container *ngFor="let fieldData of parameters.parameter">
-      <ng-container *ngIf="fieldData?.selectOption">
+      <div class="field__wrapper" *ngIf="fieldData?.selectOption">
         <ng-container
           *ngIf="fieldData?.selectOption.length === 1 || fieldData?.selectOption.length > 3; else tabContent">
           <label>
@@ -22,9 +24,9 @@
           </div>
 
         </ng-template>
-      </ng-container>
+      </div>
 
-      <ng-container *ngIf="!fieldData?.selectOption && checkBackendFullMistake(fieldData.condition)">
+      <div class="field__wrapper" *ngIf="!fieldData?.selectOption && checkBackendFullMistake(fieldData.condition)">
         <label>{{ fieldData.displayName }}
           <input  [placeholder]="fieldData.hint || ''" [type]="fieldData.type" [formControlName]="fieldData.name">
         </label>
@@ -37,8 +39,7 @@
             </ng-container>
           </ng-container>
         </div>
-
-      </ng-container>
+      </div>
     </ng-container>
     <div class="buttons-wrapper m-t-1">
       <button (click)="window.history.back()" type="button" class="button secondary-button">

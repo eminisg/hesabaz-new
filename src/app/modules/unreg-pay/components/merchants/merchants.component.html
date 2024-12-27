@@ -1,12 +1,12 @@
 <section class="merchants__section">
   <ng-container *ngFor="let merchant of merchantList$ | async">
-    <app-merchant-card *ngIf="!merchant.link || merchant.link === '0'" >
-      <button [routerLink]="'parameters/' + merchant?.itemName">
+    <app-merchant-card *ngIf="!merchant.link || merchant.link === '0'">
+      <button (click)="navigateManagement(merchant.type,merchant?.itemName)">
         <figure>
-          <img [src]="merchant?.logoPath" />
+          <img [src]="merchant?.logoPath" [alt]="merchant.displayName" />
         </figure>
         <h6>
-          {{merchant?.displayName}}
+          {{ merchant?.displayName }}
         </h6>
       </button>
     </app-merchant-card>

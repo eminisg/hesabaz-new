@@ -21,12 +21,6 @@ import {EMPTY, Observable, throwError} from 'rxjs';
 })
 
 export class MerchantParametersComponent implements OnInit, AfterViewInit {
-  parameters$: Observable<BillingData>;
-  form = new FormGroup({});
-  @ViewChild('parametersWrapper', {static: false}) parametersWrapper: ElementRef;
-  errorTypes = ['required', 'pattern', 'minlength', 'maxlength'];
-  activeIndex: number | null = 0;
-  errorMessage = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +29,13 @@ export class MerchantParametersComponent implements OnInit, AfterViewInit {
     private unregPayStore: UnregPayStoreService,
   ) {
   }
+  parameters$: Observable<BillingData>;
+  form = new FormGroup({});
+  @ViewChild('parametersWrapper', {static: false}) parametersWrapper: ElementRef;
+  errorTypes = ['required', 'pattern', 'minlength', 'maxlength'];
+  activeIndex: number | null = 0;
+  errorMessage = '';
+  protected readonly window = window;
 
   ngOnInit() {
     this.initForm();
